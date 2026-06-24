@@ -1,0 +1,29 @@
+{
+  "firestore": {
+    "collections": {
+      "releases": {
+        "description": "Saved project release notes drafts and configurations",
+        "schema": {
+          "userId": "string",
+          "projectName": "string",
+          "version": "string",
+          "releaseDate": "string",
+          "milestoneGoals": "string",
+          "customNotes": "string",
+          "markdown": "string",
+          "commitsCount": "number",
+          "createdAt": "timestamp"
+        },
+        "indexes": [
+          {
+            "fields": [
+              { "fieldPath": "userId", "order": "ASCENDING" },
+              { "fieldPath": "createdAt", "order": "DESCENDING" }
+            ]
+          }
+        ]
+      }
+    },
+    "rules": "rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /releases/{releaseId} {\n      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;\n      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;\n    }\n  }\n}"
+  }
+}

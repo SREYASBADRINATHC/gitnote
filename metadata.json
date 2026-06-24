@@ -1,0 +1,6 @@
+{
+  "name": "AI Release Notes Agent",
+  "description": "An interactive AI agent that parses commits, categorizes changes, and automatically generates beautifully styled release notes and change logs tailored to your team's tone and target audience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
